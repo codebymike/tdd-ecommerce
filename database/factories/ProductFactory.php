@@ -14,7 +14,9 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => 'Wheat',
+            'cost' => 2.5,
+            'image' => 'some-image.jpg',
         ];
     }
 }
