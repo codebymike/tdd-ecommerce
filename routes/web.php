@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('search');
+    $items = App\Models\Product::get();
+    return view('search', compact('items'));
 });
 
 Route::get('/cart', function () {
