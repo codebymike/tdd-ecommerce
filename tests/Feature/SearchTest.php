@@ -29,4 +29,19 @@ class SearchTest extends TestCase
         $response->assertViewIs('search')->assertViewHas('items', $items);
     }
 
+    /** @test */
+    public function food_search_page_shows_the_items()
+    {
+        Product::factory()->count(3)->create();
+
+        $items = Product::get();
+
+        $this->get('/')
+            ->assertSeeInOrder([
+                $items[0]->name,
+                $items[1]->name,
+                $items[2]->name,
+            ]);
+    }
+
 }
