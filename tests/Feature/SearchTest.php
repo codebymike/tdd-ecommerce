@@ -44,4 +44,24 @@ class SearchTest extends TestCase
             ]);
     }
 
+    /** @test */
+    public function food_can_be_searched_given_a_query()
+    {
+        Product::factory()->create([
+            'name' => 'Taco'
+        ]);
+        Product::factory()->create([
+            'name' => 'Pizza'
+        ]);
+        Product::factory()->create([
+            'name' => 'BBQ'
+        ]);
+
+        $this->get('/?query=bbq')
+            ->assertSee('BBQ')
+            ->assertDontSeeText('Pizza')
+            ->assertDontSeeText('Taco');
+    }
+
+
 }
