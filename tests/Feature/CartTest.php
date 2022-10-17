@@ -26,4 +26,34 @@ class CartTest extends TestCase
             'qty' => 1,
         ]);
     }
+
+    /** @test */
+    public function same_item_cannot_be_added_to_the_cart_twice()
+    {
+        Product::factory()->create([
+            'name' => 'Taco',
+            'cost' => 1.5,
+        ]);
+        Product::factory()->create([
+            'name' => 'Pizza',
+            'cost' => 2.1,
+        ]);
+        Product::factory()->create([
+            'name' => 'BBQ',
+            'cost' => 3.2,
+        ]);
+
+        $this->post('/cart', [
+            'id' => 1, // Taco
+        ]);
+        $this->post('/cart', [
+            'id' => 1, // Taco
+        ]);
+        $this->post('/cart', [
+            'id' => 2, // Pizza
+        ]);
+
+        $this->assertEquals(2, count(session('cart')));
+
+    }
 }

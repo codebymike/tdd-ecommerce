@@ -22,7 +22,7 @@
                 <div class="card mb-3 overflow-hidden" style="max-width: 540px; max-height: 145px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{{ $item->image }}" class="img-fluid rounded-start" alt="{{ $item->name }}">
+                            <img src="{{ $item->image }}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -30,15 +30,19 @@
                                 <span>${{ $item->cost }}</span>
             
                                 <div class="mt-2">
-                                    <button type="button" class="btn btn-primary">Add</button>
+                                    <form action="/cart" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </form>
                                 </div>
-            
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
+
         </div>
 
     </div>
