@@ -4,10 +4,13 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Product;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
 class SearchTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /** @test */
     public function food_search_page_is_accessible()
     {
