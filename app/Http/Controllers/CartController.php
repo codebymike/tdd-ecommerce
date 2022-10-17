@@ -39,4 +39,16 @@ class CartController extends Controller
     
         return redirect('/cart');
     }
+
+    public function destroy()
+    {
+        $id = request('id');
+        $items = collect(session('cart'))->filter(function ($item) use ($id) {
+            return $item['id'] != $id;
+        })->values()->toArray();
+
+        session(['cart' => $items]);
+
+        return redirect('/cart');
+    }
 }
