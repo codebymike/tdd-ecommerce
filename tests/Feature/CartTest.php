@@ -56,4 +56,14 @@ class CartTest extends TestCase
         $this->assertEquals(2, count(session('cart')));
 
     }
+
+    /** @test */
+    public function cart_page_can_be_accessed()
+    {
+        Product::factory()->count(3)->create();
+
+        $this->get('/cart')
+            ->assertViewIs('cart');
+
+    }
 }
