@@ -18,10 +18,7 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [SearchProductsController::class, 'index']);
 
-Route::get('/cart', function () {
-    return view('cart');
-});
-
+Route::get('/cart', [CartController::class, 'index']); 
 Route::post('/cart', [CartController::class, 'store']);
 
 
