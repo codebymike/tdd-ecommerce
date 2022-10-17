@@ -10,10 +10,12 @@
     <div class="container-fluid mt-5">
 
         <div class="mx-auto" style="width: 350px;">
-            <input class="form-control form-control-lg" type="text" placeholder="What do you want to eat?">
-            <div class="d-grid mx-auto mt-2">
-                <button type="submit" class="btn btn-primary btn-lg">Search</button>
-            </div>
+            <form action="/" method="GET">
+                <input class="form-control form-control-lg" type="query" name="query" value="{{ $query_str ?? '' }}" placeholder="What do you want to eat?">
+                <div class="d-grid mx-auto mt-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                </div>
+            </form>
 
             <div class="mt-3">
                 @foreach ($items as $item)
